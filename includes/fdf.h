@@ -14,7 +14,9 @@ typedef struct		s_point
 
 typedef struct		s_env
 {
-	struct s_point 	pt;
+	t_point 		**pt;
+	void			*mlx_ptr;
+	void			*win_ptr;
 	int				x_max;
 	int				y_max;
 	int				window_x;
@@ -23,6 +25,6 @@ typedef struct		s_env
 	int				grid_y;
 }					t_env;
 
-void		read_map_max(char **av, t_env *yap);
-void		read_value(char **av, t_env *yap);
+void		read_max(int fd, t_env *m);
+void		read_value(int fd, t_env *m);
 #endif
