@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/19 14:38:40 by ksonu             #+#    #+#             */
-/*   Updated: 2018/04/19 20:31:54 by ksonu            ###   ########.fr       */
+/*   Created: 2018/04/19 18:33:48 by ksonu             #+#    #+#             */
+/*   Updated: 2018/04/19 21:59:57 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
-int		main(int ac, char **av)
+void		draw(t_env *m, t_point **new)
 {
-	t_env	m;
-	int		fd;
+	int		i;
+	int		j;
 
-	m =*(t_env*)ft_memalloc(sizeof(t_env));
-	if (ac ==2)
+
+	i = 0;
+	while (i < m->y_max)
 	{
-		fd = open(av[1], O_RDONLY);
-		read_max(fd, &m);
-		fd = open(av[1], O_RDONLY);
-		read_value(fd, &m);
-		mlx(&m);
+		mlx_pixel_put(m->mlx_ptr, m->win_ptr, new[i][j].y, 
+				new[i][j].x, 0xFFFFFF);
+		j = 0;
+		while (j < m->x_max)
+		{
+			mlx_pixel_put(m->mlx_ptr, m->win_ptr, new[i][j].y, 
+					new[i][j].x, 0xFFFFFF);
+			j++;
+		}
+		i++;
 	}
-}	
+}
