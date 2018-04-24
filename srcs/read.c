@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:52:57 by ksonu             #+#    #+#             */
-/*   Updated: 2018/04/19 21:15:46 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/04/23 21:13:43 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ int			read_max(int fd, t_env *m)
 	tmp = 0;
 	m->y_max = 0;
 	m->x_max = 0;
-	m->window_y = 0;
-	m->window_x = 0;
 	while (get_next_line(fd, &line) > 0)
 	{
 		m->y_max++;
@@ -36,9 +34,9 @@ int			read_max(int fd, t_env *m)
 		ft_strdel(&line);
 	}
 	if (m->x_max > m->y_max)
-		m->gap = WIN_X / m->x_max;
+		m->gap = (WIN_X - 200) / m->x_max;
 	else if (m->x_max < m->y_max)
-		m->gap = WIN_Y / m->y_max;
+		m->gap = (WIN_Y - 200) / m->y_max;
 	return (0);
 }
 
@@ -50,8 +48,10 @@ void		read_value(int fd, t_env *m)
 	int		j;
 
 	i = 0;
+	m->midx = m->x_max / 2;
+	m->midy = m->y_max / 2;
 	m->pt = (t_point**)malloc(sizeof(t_point*) * (m->y_max + 1));
-	while (i < m->y_max)
+	while (i < m->y_max + 1)
 	{
 		if (get_next_line(fd, &line) == 1)
 		{
@@ -59,16 +59,23 @@ void		read_value(int fd, t_env *m)
 			ft_bzero(m->pt[i], (sizeof(t_point) * m->x_max + 1));
 			split = ft_strsplit(line, ' ');
 			j = 0;
-			while (j < m->x_max && split[j])
+			while (j < m->x_max + 1 && split[j])
 			{
-				m->pt[i][j].y = i;
-				m->pt[i][j].x = j;
+				m->pt[i][j].y = (((i - m->midy) * m->gap) + (WIN_Y / 2));
+				m->pt[i][j].x = (((j - m->midx) * m->gap) + (WIN_X / 2));
 				m->pt[i][j].z = ft_atoi(split[j]);
 				j++;
 			}
 			ft_splitdel(split);
 			ft_strdel(&line);
 		}
+		i++;
+	}
+	m->peter = (t_point**)malloc(sizeof(t_point*) * (m->x_max + 1));
+	i = 0;
+	while (i < m->x_max + 1)
+	{
+		m->peter[i] = (t_point*)malloc(sizeof(t_point) * (m->y_max + 1));
 		i++;
 	}
 }
