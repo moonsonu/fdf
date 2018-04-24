@@ -9,25 +9,24 @@
 
 typedef struct		s_point
 {
-	int				x;
-	int				y;
+	float			x;
+	float			y;
 	int				z;
 }					t_point;
 
 typedef struct		s_env
 {
-	t_point 		**pt;
+	t_point			**pt;
+	t_point			**peter;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	int				x_max;
 	int				y_max;
-	int				window_x;
-	int				window_y;
+	int				i;
+	int				j;
 	int				gap;
 	int				midx;
 	int				midy;
-	int				grid_x;
-	int				grid_y;
 }					t_env;
 
 int			read_max(int fd, t_env *m);
@@ -36,7 +35,7 @@ void		read_value(int fd, t_env *m);
 void		mlx(t_env *m);
 int			key_escape(int key);
 
-void		draw(t_env *m, t_point **n);
+void		draw(t_env *m);
 
 t_point		**set_middle(t_env *m);
 #endif
