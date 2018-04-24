@@ -22,8 +22,6 @@ typedef struct		s_env
 	void			*win_ptr;
 	int				x_max;
 	int				y_max;
-	int				i;
-	int				j;
 	int				gap;
 	int				midx;
 	int				midy;
@@ -35,7 +33,8 @@ void		read_value(int fd, t_env *m);
 void		mlx(t_env *m);
 int			key_escape(int key);
 
-void		draw(t_env *m);
+void		ft_horizon(t_env *m);
 
-t_point		**set_middle(t_env *m);
+void		ft_vertic(t_env *m);
+
 #endif
