@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   rotation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/19 14:38:40 by ksonu             #+#    #+#             */
-/*   Updated: 2018/04/24 00:05:37 by ksonu            ###   ########.fr       */
+/*   Created: 2018/04/23 23:58:20 by ksonu             #+#    #+#             */
+/*   Updated: 2018/04/24 00:05:59 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
-int		main(int ac, char **av)
+void		rotation_x(t_env *m)
 {
-	t_env	m;
-	int		fd;
 
-	m = *(t_env*)ft_memalloc(sizeof(t_env));
-	if (ac == 2)
-	{
-		fd = open(av[1], O_RDONLY);
-		read_max(fd, &m);
-		fd = open(av[1], O_RDONLY);
-		read_value(fd, &m);
-		mlx(&m);
-	}
+}
+
+void		rotation_y(t_env *m)
+{
+}
+
+void		rotation_z(t_env *z)
+{
 }

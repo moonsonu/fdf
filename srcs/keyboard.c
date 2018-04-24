@@ -1,30 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/19 14:38:40 by ksonu             #+#    #+#             */
-/*   Updated: 2018/04/24 00:05:37 by ksonu            ###   ########.fr       */
+/*   Created: 2018/04/24 00:06:28 by ksonu             #+#    #+#             */
+/*   Updated: 2018/04/24 00:18:07 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include <stdio.h>
-
-int		main(int ac, char **av)
+int		key_escape(int key)
 {
-	t_env	m;
-	int		fd;
-
-	m = *(t_env*)ft_memalloc(sizeof(t_env));
-	if (ac == 2)
+	if (key == 53)
 	{
-		fd = open(av[1], O_RDONLY);
-		read_max(fd, &m);
-		fd = open(av[1], O_RDONLY);
-		read_value(fd, &m);
-		mlx(&m);
+		exit(0);
+		return (0);
 	}
+}
+
+int		key_rot(int key)
+{
+	//123left 125down 124right 126up
+	if (key == 123)
+}
+
+int		key_zoom(int key)
+{
+	//27minus 24equal
+	if (key == 27)
+
+}
+
+void	key_board(t_env *m)
+{
+	mlx_key_hook(m->win_ptr, key_escape, 0);
+	mlx_key_hook(m->win_ptr, key_rot, 0);
+	mlx_key_hook(m->win_ptr, key_zoom, 0);
 }
