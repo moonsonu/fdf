@@ -6,27 +6,34 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 17:19:07 by ksonu             #+#    #+#             */
-/*   Updated: 2018/04/24 00:18:11 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/04/24 21:15:18 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
 
-void		mlx(t_env *m)
+void		init_struct(t_env *m)
 {
-	m->mlx_ptr = mlx_init();
-	m->win_ptr = mlx_new_window(m->mlx_ptr, WIN_X, WIN_Y, "MOON");
-	ft_horizon(m);
-	ft_vertic(m);
-	mlx_key_hook(m->win_ptr, key_escape, 0);
-	mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 5, 0x4876ff, "[ESC] : EXIT");
-	mlx_loop(m->mlx_ptr);
+	m->x_angle = 0;
+	m->y_angle = 0;
+	m->z_angle = 0;
+	m->z_gap = 70;
 }
 
-int			key_escape(int key)
+
+void		mlx(t_env *m)
 {
-	if (key == 53)
-		exit(0);
-	return (0);
+	init_struct(m);
+	m->mlx_ptr = mlx_init();
+	m->win_ptr = mlx_new_window(m->mlx_ptr, WIN_X, WIN_Y, "MOON");
+	mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 5, 0xFFFFFF, "[ESC] : EXIT");
+	mlx_string_put(m->mlx_ptr, m->win_ptr, 550, 5, 0xFFFFFF, "X ROTATION : X, V");
+	mlx_string_put(m->mlx_ptr, m->win_ptr, 550, 25, 0xFFFFFF, "Y ROTATION : C, D");
+	mlx_string_put(m->mlx_ptr, m->win_ptr, 550, 45, 0xFFFFFF, "Z ROTATION : Z, A");
+	mlx_string_put(m->mlx_ptr, m->win_ptr, 550, 700, 0xFFFFFF, "Z -, +");
+	ft_horizon(m);
+	ft_vertic(m);
+	mlx_hook(m->win_ptr, 2, 0, key_board, m);
+	mlx_loop(m->mlx_ptr);
 }

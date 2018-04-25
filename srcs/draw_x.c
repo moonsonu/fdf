@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 22:06:09 by ksonu             #+#    #+#             */
-/*   Updated: 2018/04/24 00:18:15 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/04/24 21:15:23 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		ft_draw_x(t_env *m, int i, int j)
 	{
 		mlx_pixel_put(m->mlx_ptr, m->win_ptr, ((l - m->pt[i][j].y) /
 					(m->pt[i][j + 1].y - m->pt[i][j].y) * (m->pt[i][j + 1].x -
-						m->pt[i][j].x) + m->pt[i][j].x), l, 0xFFFFFF);
+						m->pt[i][j].x) + m->pt[i][j].x), l, 0xFFFFFF);	
 	}
 }
 
@@ -39,16 +39,18 @@ void		get_zxy(t_env *m)
 	int		i;
 	int		j;
 
+
 	i = -1;
 	while (++i < m->y_max)
 	{
 		j = -1;
-		while (++j < m->x_max - 1)
+		while (++j < m->x_max)
 		{
 			if (m->pt[i][j].z != 0)
 			{
-				m->pt[i][j].x = m->pt[i][j].x + (m->gap * 1.2);
-				m->pt[i][j].y = m->pt[i][j].y - (m->gap * 1.4);
+				m->pt[i][j].x = m->pt[i][j].x + (m->z_gap * 1.1);
+				m->pt[i][j].y = m->pt[i][j].y - (m->z_gap * 1.3);
+				printf("x[%f] y[%f]\n", m->pt[i][j].x, m->pt[i][j].y);
 			}
 		}
 	}
