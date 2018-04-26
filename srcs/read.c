@@ -17,15 +17,14 @@ void		malloc_p(t_env *m)
 {
 	int		i;
 
-	m->pt = (t_point**)malloc(sizeof(t_point*) * (m->x_max + 1));
+	m->pt = (t_point**)malloc(sizeof(t_point*) * (m->y_max + 1));
 	m->peter = (t_point**)malloc(sizeof(t_point*) * (m->x_max + 1));
-	i = 0;
-	while (i < m->x_max + 1)
-	{
-		m->pt[i] = (t_point*)malloc(sizeof(t_point) * (m->y_max + 1));
+	i = -1;
+	while (++i < m->y_max + 1)
+		m->pt[i] = (t_point*)malloc(sizeof(t_point) * (m->x_max + 1));
+	i = -1;
+	while (++i < m->x_max + 1)
 		m->peter[i] = (t_point*)malloc(sizeof(t_point) * (m->y_max + 1));
-		i++;
-	}
 }
 
 int			read_max(int fd, t_env *m)
@@ -39,7 +38,7 @@ int			read_max(int fd, t_env *m)
 	while (get_next_line(fd, &line) > 0)
 	{
 		m->y_max++;
-		tmp = ft_wdcount(line, ' ');
+		tmp = ft_wdcount(line, ' ') + 1;
 		if (m->x_max != 0 && tmp != m->x_max)
 		{
 			ft_putstr("error");
@@ -49,9 +48,9 @@ int			read_max(int fd, t_env *m)
 		ft_strdel(&line);
 	}
 	if (m->x_max > m->y_max)
-		m->gap = (WIN_X - 200) / m->x_max;
+		m->gap = (WIN_X - 500) / m->x_max;
 	else if (m->x_max < m->y_max)
-		m->gap = (WIN_Y - 200) / m->y_max;
+		m->gap = (WIN_Y - 500) / m->y_max;
 	return (0);
 }
 

@@ -10,8 +10,13 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRC = main.c	\
-	  read.c
+SRC = main.c		\
+	  read.c		\
+	  mlx.c			\
+	  draw_x.c		\
+	  draw_y.c		\
+	  keyboard.c	\
+	  rotation.c
 
 OBJ = $(SRC:.c=.o)
 MLX = -L $(MLXDIR) -fsanitize=address -lmlx -framework OpenGL -framework Appkit

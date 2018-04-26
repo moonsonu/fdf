@@ -42,7 +42,7 @@ void		get_zyx(t_env *m)
 	int		j;
 
 	i = -1;
-	while (++i <= m->x_max)
+	while (++i < m->x_max)
 	{
 		j = -1;
 		while (++j < m->y_max)
@@ -61,7 +61,7 @@ void		ft_vertic(t_env *m)
 
 	get_zyx(m);
 	i = -1;
-	while (++i <= m->x_max)
+	while (++i < m->x_max)
 	{
 		j = -1;
 		while (++j < m->y_max)

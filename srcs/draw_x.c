@@ -48,9 +48,8 @@ void		get_zxy(t_env *m)
 		{
 			if (m->pt[i][j].z != 0)
 			{
-				m->pt[i][j].x = m->pt[i][j].x + (m->z_gap * 1.1);
-				m->pt[i][j].y = m->pt[i][j].y - (m->z_gap * 1.3);
-				printf("x[%f] y[%f]\n", m->pt[i][j].x, m->pt[i][j].y);
+				m->pt[i][j].x = m->pt[i][j].x + (m->z_gap);
+				m->pt[i][j].y = m->pt[i][j].y - (m->z_gap);
 			}
 		}
 	}
@@ -66,7 +65,7 @@ void		ft_horizon(t_env *m)
 	while (++i < m->y_max)
 	{
 		j = -1;
-		while (++j <= m->x_max)
+		while (++j < m->x_max)
 			ft_draw_x(m, i, j);
 	}
 }

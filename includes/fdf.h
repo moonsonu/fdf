@@ -36,6 +36,7 @@ int			read_max(int fd, t_env *m);
 void		read_value(int fd, t_env *m);
 
 void		mlx(t_env *m);
+void		mlx_message(t_env *m);
 
 void		ft_horizon(t_env *m);
 void		get_zxy(t_env *m);
@@ -51,8 +52,7 @@ void		rotation_z(t_env *m);
 void		ft_rotate(t_env *m);
 
 int			key_board(int key, t_env *m);
-int			key_rot_x(int key, t_env *m);
-int			key_rot_y(int key, t_env *m);
-int			key_rot_z(int key, t_env *m);
-
+void		key_rot(int key, t_env *m);
+void		key_z(int key, t_env *m);
+int			key_escape(int key);
 #endif
