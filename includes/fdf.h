@@ -41,6 +41,7 @@ void		mlx_message(t_env *m);
 void		ft_horizon(t_env *m);
 void		get_zxy(t_env *m);
 void		ft_draw_x(t_env *m, int i, int j);
+void		init_struct(t_env *m);
 
 void		ft_vertic(t_env *m);
 void		get_zyx(t_env *m);
@@ -51,7 +52,7 @@ void		rotation_y(t_env *m);
 void		rotation_z(t_env *m);
 void		ft_rotate(t_env *m);
 
-int			key_board(int key, t_env *m);
+int			keyfunction(int key, t_env *m);
 void		key_rot(int key, t_env *m);
 void		key_z(int key, t_env *m);
 int			key_escape(int key);
