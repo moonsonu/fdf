@@ -18,6 +18,7 @@ typedef struct		s_point
 typedef struct		s_env
 {
 	t_point			**pt;
+	t_point			**pt_new;
 	t_point			**peter;
 	void			*mlx_ptr;
 	void			*win_ptr;
@@ -30,10 +31,13 @@ typedef struct		s_env
 	float			y_angle;
 	float			z_angle;
 	int				z_gap;
+	int				x_move;
+	int				y_move;
 }					t_env;
 
 int			read_max(int fd, t_env *m);
 void		read_value(int fd, t_env *m);
+void		read_dup(t_env *m);
 
 void		mlx(t_env *m);
 void		mlx_message(t_env *m);
