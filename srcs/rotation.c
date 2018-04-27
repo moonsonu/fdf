@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 23:58:20 by ksonu             #+#    #+#             */
-/*   Updated: 2018/04/26 15:59:40 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/04/26 20:09:48 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void		rotation_x(t_env *m)
 		j = -1;
 		while (++j < m->x_max)
 		{
-			y = m->pt[i][j].y;
-			z = m->pt[i][j].z;
-			m->pt[i][j].y = (y * cos(m->x_angle)) - (z * sin(m->x_angle));
-			m->pt[i][j].z = (y * sin(m->x_angle)) + (z * cos(m->x_angle));
+			y = m->pt_new[i][j].y;
+			z = m->pt_new[i][j].z;
+			m->pt_new[i][j].y = (y * cos(m->x_angle)) - (z * sin(m->x_angle));
+			m->pt_new[i][j].z = (y * sin(m->x_angle)) + (z * cos(m->x_angle));
 		}
 	}
 }
@@ -47,10 +47,10 @@ void		rotation_y(t_env *m)
 		j = -1;
 		while (++j < m->x_max)
 		{
-			x = m->pt[i][j].x;
-			z = m->pt[i][j].z;
-			m->pt[i][j].x = (z * sin(m->y_angle)) - (x * cos(m->y_angle));
-			m->pt[i][j].z = (z * cos(m->y_angle)) + (x * sin(m->y_angle));
+			x = m->pt_new[i][j].x;
+			z = m->pt_new[i][j].z;
+			m->pt_new[i][j].x = (z * sin(m->y_angle)) + (x * cos(m->y_angle));
+			m->pt_new[i][j].z = (z * cos(m->y_angle)) - (x * sin(m->y_angle));
 		}
 	}
 }
@@ -68,10 +68,10 @@ void		rotation_z(t_env *m)
 		j = -1;
 		while (++j < m->x_max)
 		{
-			x = m->pt[i][j].x;
-			y = m->pt[i][j].y;
-			m->pt[i][j].x = (x * cos(m->z_angle)) - (y * sin(m->z_angle));
-			m->pt[i][j].y = (x * sin(m->z_angle)) + (y * cos(m->z_angle));
+			x = m->pt_new[i][j].x;
+			y = m->pt_new[i][j].y;
+			m->pt_new[i][j].x = (x * cos(m->z_angle)) - (y * sin(m->z_angle));
+			m->pt_new[i][j].y = (x * sin(m->z_angle)) + (y * cos(m->z_angle));
 		}
 	}
 }

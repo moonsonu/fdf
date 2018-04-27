@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 22:06:09 by ksonu             #+#    #+#             */
-/*   Updated: 2018/04/26 16:59:05 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/04/26 19:53:18 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,21 @@ void		ft_draw_x(t_env *m, int i, int j)
 	float	k;
 	float	l;
 
-	k = m->pt[i][j].x;
-	l = m->pt[i][j].y;
-	while (++k < m->pt[i][j + 1].x)
+	k = m->pt_new[i][j].x;
+	l = m->pt_new[i][j].y;
+	while (++k < m->pt_new[i][j + 1].x)
 	{
-		mlx_pixel_put(m->mlx_ptr, m->win_ptr, k, ((k - m->pt[i][j].x) /
-					(m->pt[i][j + 1].x - m->pt[i][j].x) * (m->pt[i][j + 1].y -
-						m->pt[i][j].y) + m->pt[i][j].y), 0xFFFFFF);
+		mlx_pixel_put(m->mlx_ptr, m->win_ptr, k, ((k - m->pt_new[i][j].x) /
+					(m->pt_new[i][j + 1].x - m->pt_new[i][j].x) *
+					(m->pt_new[i][j + 1].y - m->pt_new[i][j].y) +
+					m->pt_new[i][j].y), 0xFFFFFF);
 	}
-	while (++l < m->pt[i][j + 1].y)
+	while (++l < m->pt_new[i][j + 1].y)
 	{
-		mlx_pixel_put(m->mlx_ptr, m->win_ptr, ((l - m->pt[i][j].y) /
-					(m->pt[i][j + 1].y - m->pt[i][j].y) * (m->pt[i][j + 1].x -
-						m->pt[i][j].x) + m->pt[i][j].x), l, 0xFFFFFF);	
+		mlx_pixel_put(m->mlx_ptr, m->win_ptr, ((l - m->pt_new[i][j].y) / 
+					(m->pt_new[i][j + 1].y - m->pt_new[i][j].y) * 
+					(m->pt_new[i][j + 1].x - m->pt_new[i][j].x) + 
+					m->pt_new[i][j].x), l, 0xFFFFFF);	
 	}
 }
 
@@ -46,10 +48,12 @@ void		get_zxy(t_env *m)
 		j = -1;
 		while (++j < m->x_max)
 		{
+			m->pt_new[i][j].x += m->x_move;
+			m->pt_new[i][j].y += m->y_move;
 			if (m->pt[i][j].z != 0)
 			{
-				m->pt[i][j].x = m->pt[i][j].x + (m->z_gap);
-				m->pt[i][j].y = m->pt[i][j].y - (m->z_gap);
+				m->pt_new[i][j].x += (m->z_gap);
+				m->pt_new[i][j].y -= (m->z_gap);
 			}
 		}
 	}

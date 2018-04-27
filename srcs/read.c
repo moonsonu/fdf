@@ -6,12 +6,32 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:52:57 by ksonu             #+#    #+#             */
-/*   Updated: 2018/04/23 23:57:41 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/04/26 20:09:46 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
+
+void		read_dup(t_env *m)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	m->pt_new = (t_point**)malloc(sizeof(t_point*) * (m->x_max + 1));
+	while (++i < m->y_max)
+	{
+		j = -1;
+		m->pt_new[i] = (t_point*)malloc(sizeof(t_point) * (m->x_max + 1));
+		while (++j < m->x_max)
+		{
+			m->pt_new[i][j].x = m->pt[i][j].x;
+			m->pt_new[i][j].y = m->pt[i][j].y;
+			m->pt_new[i][j].z = m->pt[i][j].z;
+		}
+	}
+}
 
 void		malloc_p(t_env *m)
 {
@@ -81,4 +101,5 @@ void		read_value(int fd, t_env *m)
 			ft_strdel(&line);
 		}
 	}
+	read_dup(m);
 }
