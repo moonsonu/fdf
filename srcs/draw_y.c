@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 21:52:44 by ksonu             #+#    #+#             */
-/*   Updated: 2018/04/26 20:09:44 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/04/28 20:29:29 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void		ft_draw_y(t_env *m, int i, int j)
 		mlx_pixel_put(m->mlx_ptr, m->win_ptr, k, ((k - m->peter[i][j].x) /
 					(m->peter[i][j + 1].x - m->peter[i][j].x) *
 					(m->peter[i][j + 1].y - m->peter[i][j].y) +
-					m->peter[i][j].y), 0xFFFFFF);
+					m->peter[i][j].y), m->peter[i][j].color);
 	}
 	while (++l < m->peter[i][j + 1].y)
 	{
 		mlx_pixel_put(m->mlx_ptr, m->win_ptr, ((l - m->peter[i][j].y) /
 					(m->peter[i][j + 1].y - m->peter[i][j].y) *
 					(m->peter[i][j + 1].x - m->peter[i][j].x) +
-					m->peter[i][j].x), l, 0xFFFFFF);
+					m->peter[i][j].x), l, m->peter[i][j].color);
 	}
 }
 
@@ -50,6 +50,7 @@ void		get_zyx(t_env *m)
 			m->peter[i][j].x = m->pt_new[j][i].x;
 			m->peter[i][j].y = m->pt_new[j][i].y;
 			m->peter[i][j].z = m->pt_new[j][i].z;
+			m->peter[i][j].color = m->pt_new[j][i].color;
 		}
 	}
 }

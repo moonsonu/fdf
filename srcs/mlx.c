@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 17:19:07 by ksonu             #+#    #+#             */
-/*   Updated: 2018/04/26 20:09:52 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/04/28 22:53:50 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,13 @@ void		mlx_message(t_env *m)
 {
 
 	mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 5, 0xFFFFFF, "[ESC] : EXIT");
-	mlx_string_put(m->mlx_ptr, m->win_ptr, 550, 5, 0xFFFFFF, "X ROTATION : X, V");
-	mlx_string_put(m->mlx_ptr, m->win_ptr, 550, 25, 0xFFFFFF, "Y ROTATION : C, D");
-	mlx_string_put(m->mlx_ptr, m->win_ptr, 550, 45, 0xFFFFFF, "Z ROTATION : Z, A");
-	mlx_string_put(m->mlx_ptr, m->win_ptr, 550, 700, 0xFFFFFF, "Z -, +");
+	mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 680, 0xFFFFFF, "X ROTATION : X, V");
+	mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 700, 0xFFFFFF, "Y ROTATION : C, D");
+	mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 720, 0xFFFFFF, "Z ROTATION : Z, A");
+	mlx_string_put(m->mlx_ptr, m->win_ptr, 1000, 700, 0xFFFFFF, "MOVE : ARROWS");
+	mlx_string_put(m->mlx_ptr, m->win_ptr, 1000, 720, 0xFFFFFF, "ZOOM IN/OUT : I, O");
+	mlx_string_put(m->mlx_ptr, m->win_ptr, 550, 700, 0xFFFFFF, "Z : -, +");
+	mlx_string_put(m->mlx_ptr, m->win_ptr, 550, 720, 0xFFFFFF, "RESET : R");
 }
 
 void		mlx(t_env *m)
@@ -40,6 +43,7 @@ void		mlx(t_env *m)
 	ft_horizon(m);
 	get_zyx(m);
 	ft_vertic(m);
+	mlx_mouse_hook(m->win_ptr, mousefunction, m);
 	mlx_key_hook(m->win_ptr, keyfunction, m);
 	mlx_loop(m->mlx_ptr);
 }

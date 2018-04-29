@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:52:57 by ksonu             #+#    #+#             */
-/*   Updated: 2018/04/26 20:09:46 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/04/28 21:23:07 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,27 @@ void		read_dup(t_env *m)
 		m->pt_new[i] = (t_point*)malloc(sizeof(t_point) * (m->x_max + 1));
 		while (++j < m->x_max)
 		{
-			m->pt_new[i][j].x = m->pt[i][j].x;
-			m->pt_new[i][j].y = m->pt[i][j].y;
+			m->pt_new[i][j].x = (((m->pt[i][j].x - m->midx) * m->gap) + (WIN_X / 2));
+			m->pt_new[i][j].y = (((m->pt[i][j].y - m->midy) * m->gap) + (WIN_Y / 2));
 			m->pt_new[i][j].z = m->pt[i][j].z;
+			m->pt_new[i][j].color = m->pt[i][j].color;
+			m->color = m->pt[i][j].color;
 		}
 	}
+}
+
+void		read_color(char **str, t_env *m, int i, int j)
+{
+	char	*ptr;
+	char	*tmp;
+
+	if ((ptr = ft_strchr(str[j], ',')))
+	{
+		tmp = ft_strdup(ptr + 3);
+		m->pt[i][j].color = ft_atoi_base(tmp, 16);
+	}
+	else
+		m->pt[i][j].color = 0xFFFFFF;
 }
 
 void		malloc_p(t_env *m)
@@ -67,10 +83,10 @@ int			read_max(int fd, t_env *m)
 		m->x_max = tmp;
 		ft_strdel(&line);
 	}
-	if (m->x_max > m->y_max)
-		m->gap = (WIN_X - 500) / m->x_max;
+	if (m->x_max >= m->y_max)
+		m->gap = (WIN_X / 3) / m->x_max;
 	else if (m->x_max < m->y_max)
-		m->gap = (WIN_Y - 500) / m->y_max;
+		m->gap = (WIN_Y / 3) / m->y_max;
 	return (0);
 }
 
@@ -93,8 +109,9 @@ void		read_value(int fd, t_env *m)
 			j = -1;
 			while (++j < m->x_max + 1 && split[j])
 			{
-				m->pt[i][j].y = (((i - m->midy) * m->gap) + (WIN_Y / 2));
-				m->pt[i][j].x = (((j - m->midx) * m->gap) + (WIN_X / 2));
+				read_color(split, m, i, j);
+				m->pt[i][j].y = i;
+				m->pt[i][j].x = j;
 				m->pt[i][j].z = ft_atoi(split[j]);
 			}
 			ft_splitdel(split);
