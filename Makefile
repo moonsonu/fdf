@@ -6,17 +6,19 @@
 #    By: ksonu <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/16 21:19:01 by ksonu             #+#    #+#              #
-#    Updated: 2018/04/26 20:09:55 by ksonu            ###   ########.fr        #
+#    Updated: 2018/04/28 21:20:43 by ksonu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = main.c		\
-	  read.c		\
-	  mlx.c			\
-	  draw_x.c		\
-	  draw_y.c		\
-	  keyfunction.c	\
-	  rotation.c
+SRC = main.c			\
+	  read.c			\
+	  mlx.c				\
+	  draw_x.c			\
+	  draw_y.c			\
+	  keyfunction.c		\
+	  rotation.c		\
+	  color.c			\
+	  mousefunction.c	
 
 OBJ = $(SRC:.c=.o)
 MLX = -L $(MLXDIR) -fsanitize=address -lmlx -framework OpenGL -framework Appkit
