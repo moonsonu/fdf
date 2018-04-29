@@ -13,6 +13,7 @@ typedef struct		s_point
 	float			x;
 	float			y;
 	int				z;
+	int				color;
 }					t_point;
 
 typedef struct		s_env
@@ -33,6 +34,7 @@ typedef struct		s_env
 	int				z_gap;
 	int				x_move;
 	int				y_move;
+	int				color;
 }					t_env;
 
 int			read_max(int fd, t_env *m);
@@ -57,7 +59,12 @@ void		rotation_z(t_env *m);
 void		ft_rotate(t_env *m);
 
 int			keyfunction(int key, t_env *m);
-void		key_rot(int key, t_env *m);
-void		key_z(int key, t_env *m);
-int			key_escape(int key);
+void		key_zoom(int key, t_env *m);
+
+int			mousefunction(int key, int x, int y, t_env *m);
+
+void		key_color_1(t_env *m);
+void		key_color_2(t_env *m);
+void		key_color_3(t_env *m);
+void		key_color_4(t_env *m);
 #endif
