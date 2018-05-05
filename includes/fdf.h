@@ -63,8 +63,10 @@ void		key_zoom(int key, t_env *m);
 
 int			mousefunction(int key, int x, int y, t_env *m);
 
-void		key_color_1(t_env *m);
-void		key_color_2(t_env *m);
+void		key_color_1_x(t_env *m);
+void		key_color_1_y(t_env *m);
+void		key_color_2_x(t_env *m);
+void		key_color_2_y(t_env *m);
 void		key_color_3(t_env *m);
 void		key_color_4(t_env *m);
 #endif
