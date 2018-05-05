@@ -6,14 +6,14 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/28 17:18:40 by ksonu             #+#    #+#             */
-/*   Updated: 2018/04/28 21:10:38 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/04 17:21:21 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
 
-void		key_color_1(t_env *m)
+void		key_color_1_x(t_env *m)
 {
 	int		i;
 	int		j;
@@ -24,9 +24,77 @@ void		key_color_1(t_env *m)
 		j = -1;
 		while (++j < m->x_max)
 		{
-			if (m->pt_new[i][j].z != 0)
-				m->pt_new[i][j].color = 0x00BFFF;
-			m->pt_new[i][j].color = 0xFF1493;
+			if (m->pt[i][j].color != 0)
+				m->pt_new[i][j].color = m->pt[i][j].color;
+			else
+				m->pt_new[i][j].color = 0xFFFFFF;
+		}
+	}
+	key_color_1_y(m);
+}
+
+void		key_color_1_y(t_env *m)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	while (++i < m->x_max)
+	{
+		j = -1;
+		while (++j < m->y_max)
+		{
+			if (m->pt[j][i].color != 0)
+				m->peter[i][j].color = m->pt[i][j].color;
+			else
+				m->peter[i][j].color = 0xFFFFFF;
+		}
+	}
+}
+
+void		key_color_2_x(t_env *m)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	while (++i < m->y_max)
+	{
+		j = -1;
+		while (++j < m->x_max)
+		{
+			if (m->pt_new[i][j].z == 0 && m->pt_new[i][j + 1].z != 0)
+				m->pt_new[i][j].color = 0xbf3eff; 
+			else if (m->pt_new[i][j].z != 0 && m->pt_new[i][j + 1].z == 0)
+				m->pt_new[i][j].color = 0xbf3eff;
+			else if (m->pt_new[i][j].z != 0)
+				m->pt_new[i][j].color = 0xff3e96;
+			else if (m->pt_new[i][j].z == 0)
+				m->pt_new[i][j].color = 0xffaeb9;
+		}
+	}
+	key_color_2_y(m);
+}
+
+void		key_color_2_y(t_env *m)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	while (++i < m->x_max)
+	{
+		j = -1;
+		while (++j < m->y_max)
+		{
+			if (m->peter[i][j].z == 0 && m->peter[i][j + 1].z != 0)
+				m->peter[i][j].color = 0xbf3eff; 
+			else if (m->peter[i][j].z != 0 && m->peter[i][j + 1].z == 0)
+				m->peter[i][j].color = 0xbf3eff;
+			else if (m->peter[i][j].z != 0)
+				m->peter[i][j].color = 0xff3e96;
+			else if (m->peter[i][j].z == 0)
+				m->peter[i][j].color = 0xffaeb9;
 		}
 	}
 }

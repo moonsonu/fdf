@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 22:06:09 by ksonu             #+#    #+#             */
-/*   Updated: 2018/04/28 20:34:39 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/04 17:21:24 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ void		get_zxy(t_env *m)
 		while (++j < m->x_max)
 		{
 			m->pt_new[i][j].x += m->x_move;
-			m->pt_new[i][j].y += m->y_move;
+			m->pt_new[i][j].y += m->y_move; 
 			if (m->pt[i][j].z != 0)
 			{
-				m->pt_new[i][j].x += (m->z_gap);
-				m->pt_new[i][j].y -= (m->z_gap);
+				m->pt_new[i][j].x += (m->z_gap * 5);
+				m->pt_new[i][j].y -= (m->z_gap * 5);
 			}
 		}
 	}

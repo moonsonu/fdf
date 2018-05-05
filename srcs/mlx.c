@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 17:19:07 by ksonu             #+#    #+#             */
-/*   Updated: 2018/04/28 22:53:50 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/04 17:16:15 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void		init_struct(t_env *m)
 	m->z_gap = 0;
 	m->x_move = 0;
 	m->y_move = 0;
+
 }
 
 void		mlx_message(t_env *m)
@@ -39,6 +40,7 @@ void		mlx_message(t_env *m)
 void		mlx(t_env *m)
 {
 	mlx_message(m);
+	key_color_1_x(m);
 	get_zxy(m);
 	ft_horizon(m);
 	get_zyx(m);

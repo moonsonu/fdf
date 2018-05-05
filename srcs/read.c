@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:52:57 by ksonu             #+#    #+#             */
-/*   Updated: 2018/04/28 21:23:07 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/04 17:18:48 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void		read_dup(t_env *m)
 			m->pt_new[i][j].x = (((m->pt[i][j].x - m->midx) * m->gap) + (WIN_X / 2));
 			m->pt_new[i][j].y = (((m->pt[i][j].y - m->midy) * m->gap) + (WIN_Y / 2));
 			m->pt_new[i][j].z = m->pt[i][j].z;
+			m->z_gap
 			m->pt_new[i][j].color = m->pt[i][j].color;
-			m->color = m->pt[i][j].color;
 		}
 	}
 }
@@ -46,7 +46,7 @@ void		read_color(char **str, t_env *m, int i, int j)
 		m->pt[i][j].color = ft_atoi_base(tmp, 16);
 	}
 	else
-		m->pt[i][j].color = 0xFFFFFF;
+		m->pt[i][j].color = 0;
 }
 
 void		malloc_p(t_env *m)

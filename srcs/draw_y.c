@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 21:52:44 by ksonu             #+#    #+#             */
-/*   Updated: 2018/04/28 20:29:29 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/04 15:43:21 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void		get_zyx(t_env *m)
 			m->peter[i][j].x = m->pt_new[j][i].x;
 			m->peter[i][j].y = m->pt_new[j][i].y;
 			m->peter[i][j].z = m->pt_new[j][i].z;
-			m->peter[i][j].color = m->pt_new[j][i].color;
+			//m->peter[i][j].color = m->pt_new[j][i].color;
 		}
 	}
 }
