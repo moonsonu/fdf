@@ -13,6 +13,9 @@ typedef struct		s_point
 	float			x;
 	float			y;
 	int				z;
+	float			x_tmp;
+	float			y_tmp;
+	int				z_tmp;
 	int				color;
 }					t_point;
 
@@ -25,12 +28,15 @@ typedef struct		s_env
 	void			*win_ptr;
 	int				x_max;
 	int				y_max;
+	int				z_max;
+	int				z_min;
 	int				gap;
 	int				midx;
 	int				midy;
 	float			x_angle;
 	float			y_angle;
 	float			z_angle;
+	int				zoom;
 	int				z_gap;
 	int				x_move;
 	int				y_move;
@@ -43,11 +49,14 @@ void		read_dup(t_env *m);
 
 void		mlx(t_env *m);
 void		mlx_message(t_env *m);
+void		prepare_zscale(t_env *m, t_point pt);
+void		init_struct(t_env *m);
 
 void		ft_horizon(t_env *m);
 void		get_zxy(t_env *m);
 void		ft_draw_x(t_env *m, int i, int j);
 void		init_struct(t_env *m);
+void		prepare_pt(t_env *m);
 
 void		ft_vertic(t_env *m);
 void		get_zyx(t_env *m);
@@ -67,6 +76,6 @@ void		key_color_1_x(t_env *m);
 void		key_color_1_y(t_env *m);
 void		key_color_2_x(t_env *m);
 void		key_color_2_y(t_env *m);
-void		key_color_3(t_env *m);
-void		key_color_4(t_env *m);
+void		key_color_3_x(t_env *m);
+void		key_color_3_y(t_env *m);
 #endif
