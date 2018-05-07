@@ -6,12 +6,20 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 17:19:07 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/04 17:16:15 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/06 22:48:36 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
+
+void		prepare_zscale(t_env *m, t_point pt)
+{
+	if (pt.z != 0 && pt.z > m->z_max)
+		m->z_max = pt.z;
+	else if (pt.z != 0 && pt.z < m->z_min)
+		m->z_min = pt.z;
+}
 
 void		init_struct(t_env *m)
 {
@@ -19,8 +27,9 @@ void		init_struct(t_env *m)
 	m->y_angle = 0;
 	m->z_angle = 0;
 	m->z_gap = 0;
-	m->x_move = 0;
-	m->y_move = 0;
+	//m->zoom = 10;
+	//m->x_move = 0;
+	//m->y_move = 0;
 
 }
 
@@ -41,6 +50,7 @@ void		mlx(t_env *m)
 {
 	mlx_message(m);
 	key_color_1_x(m);
+	prepare_pt(m);
 	get_zxy(m);
 	ft_horizon(m);
 	get_zyx(m);

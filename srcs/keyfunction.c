@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 16:43:08 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/04 15:43:50 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/06 22:48:24 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,14 @@ void		key_function(int key, t_env *m)
 	key == 123 ? m->x_move -= 10 : 0;
 	key == 124 ? m->x_move += 10 : 0;
 	key == 15 ? read_dup(m) : 0;
-	key == 31 ? m->gap -= 10 : 0;
-	key == 34 ? m->gap += 10 : 0;
+	key == 31 ? m->zoom -= 3 : 0;
+	key == 34 ? m->zoom += 3 : 0;
 	key == 18 ? key_color_1_x(m) : 0;
 	key == 19 ? key_color_2_x(m) : 0;
-	key == 20 ? key_color_3(m) : 0;
-	key == 21 ? key_color_4(m) : 0;
+	key == 20 ? key_color_3_x(m) : 0;
+	//key == 21 ? key_color_4(m) : 0;
 	ft_rotate(m);
+	prepare_pt(m);
 	get_zxy(m);
 }
 
@@ -47,6 +48,7 @@ void		key_zoom(int key, t_env *m)
 		m->gap -= 10;
 	if (key == 34)
 		m->gap += 10;
+	prepare_pt(m);
 	get_zxy(m);
 	read_dup(m);
 	}

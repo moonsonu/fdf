@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:52:57 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/04 17:18:48 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/06 22:48:51 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void		read_dup(t_env *m)
 	int		i;
 	int		j;
 
+	m->zoom = 10;
 	i = -1;
 	m->pt_new = (t_point**)malloc(sizeof(t_point*) * (m->x_max + 1));
 	while (++i < m->y_max)
@@ -26,11 +27,12 @@ void		read_dup(t_env *m)
 		m->pt_new[i] = (t_point*)malloc(sizeof(t_point) * (m->x_max + 1));
 		while (++j < m->x_max)
 		{
-			m->pt_new[i][j].x = (((m->pt[i][j].x - m->midx) * m->gap) + (WIN_X / 2));
-			m->pt_new[i][j].y = (((m->pt[i][j].y - m->midy) * m->gap) + (WIN_Y / 2));
-			m->pt_new[i][j].z = m->pt[i][j].z;
-			m->z_gap
+			m->pt_new[i][j].x_tmp = m->pt[i][j].x;
+			m->pt_new[i][j].y_tmp = m->pt[i][j].y;
+			prepare_zscale(m, m->pt[i][j]);
+			m->pt_new[i][j].z_tmp = m->pt[i][j].z;
 			m->pt_new[i][j].color = m->pt[i][j].color;
+
 		}
 	}
 }
