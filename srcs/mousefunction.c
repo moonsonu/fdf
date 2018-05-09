@@ -6,14 +6,14 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/28 21:12:54 by ksonu             #+#    #+#             */
-/*   Updated: 2018/04/28 22:53:13 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/07 20:15:09 by jukim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
 
-int			mousefunction(int button, int x, int y, t_env *m)
+/*int			mousefunction(int button, int x, int y, t_env *m)
 {
 	int		i;
 	int		j;
@@ -58,4 +58,4 @@ int			mousefunction(int button, int x, int y, t_env *m)
 	ft_vertic(m);
 	mlx_loop(m->mlx_ptr);
 	return (0);
-}
+}*/

@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 23:58:20 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/06 21:55:18 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/08 22:43:43 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void		rotation_x(t_env *m)
 		j = -1;
 		while (++j < m->x_max)
 		{
-			y = m->pt_new[i][j].y_tmp;
-			z = m->pt_new[i][j].z_tmp;
-			m->pt_new[i][j].y_tmp = (y * cos(m->x_angle)) - (z * sin(m->x_angle));
-			m->pt_new[i][j].z_tmp = (y * sin(m->x_angle)) + (z * cos(m->x_angle));
+			y = m->pt_new[i][j].y;
+			z = m->pt_new[i][j].z;
+			m->pt_new[i][j].y = (y * cos(m->x_angle)) - (z * sin(m->x_angle));
+			m->pt_new[i][j].z = (y * sin(m->x_angle)) + (z * cos(m->x_angle));
 		}
 	}
 }
@@ -47,10 +47,10 @@ void		rotation_y(t_env *m)
 		j = -1;
 		while (++j < m->x_max)
 		{
-			x = m->pt_new[i][j].x_tmp;
-			z = m->pt_new[i][j].z_tmp;
-			m->pt_new[i][j].x_tmp = (z * sin(m->y_angle)) + (x * cos(m->y_angle));
-			m->pt_new[i][j].z_tmp = (z * cos(m->y_angle)) - (x * sin(m->y_angle));
+			x = m->pt_new[i][j].x;
+			z = m->pt_new[i][j].z;
+			m->pt_new[i][j].x = (z * sin(m->y_angle)) + (x * cos(m->y_angle));
+			m->pt_new[i][j].z = (z * cos(m->y_angle)) - (x * sin(m->y_angle));
 		}
 	}
 }
@@ -68,17 +68,27 @@ void		rotation_z(t_env *m)
 		j = -1;
 		while (++j < m->x_max)
 		{
-			x = m->pt_new[i][j].x_tmp;
-			y = m->pt_new[i][j].y_tmp;
-			m->pt_new[i][j].x_tmp = (x * cos(m->z_angle)) - (y * sin(m->z_angle));
-			m->pt_new[i][j].y_tmp = (x * sin(m->z_angle)) + (y * cos(m->z_angle));
+			x = m->pt_new[i][j].x;
+			y = m->pt_new[i][j].y;
+			m->pt_new[i][j].x = (x * cos(m->z_angle)) - (y * sin(m->z_angle));
+			m->pt_new[i][j].y = (x * sin(m->z_angle)) + (y * cos(m->z_angle));
 		}
 	}
 }
 
-void		ft_rotate(t_env *m)
+void		ft_rotate(t_env *m, int key)
 {
-	rotation_x(m);
-	rotation_y(m);
-	rotation_z(m);
+	//m->zoom_x = (m->window / 20);
+	//key == 7 ? rotation_x(m, m->zoom_x) : 0;
+	//key == 9 ? rotation_x(m, -(m->zoom_x)) : 0;
+	//key == 8 ? rotation_y(m, m->zoom_y) : 0;
+	//key == 2 ? rotation_y(m, -(m->zoom_y)) : 0;
+	//key == 6 ? rotation_z(m, m->zoom_z) : 0;
+	//key == 0 ? rotation_z(m, -(m->zoom_z)) : 0;
+	key == 7 || key == 9 ? rotation_x(m) : 0;
+	key == 8 || key == 2 ? rotation_y(m) : 0;
+	key == 6 || key == 0 ? rotation_z(m) : 0;
+	//m->x_angle = 0;
+	//m->y_angle = 0;
+	//m->z_angle = 0;
 }

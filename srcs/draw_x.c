@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 22:06:09 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/06 22:47:23 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/08 23:07:15 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void		ft_draw_x(t_env *m, int i, int j)
 	l = m->pt_new[i][j].y;
 	while (++k < m->pt_new[i][j + 1].x)
 	{
+//		printf("new[%d][%d].x = %d\n", i, j, m->pt_new[i][j].x);
 		mlx_pixel_put(m->mlx_ptr, m->win_ptr, k, ((k - m->pt_new[i][j].x) /
 					(m->pt_new[i][j + 1].x - m->pt_new[i][j].x) *
 					(m->pt_new[i][j + 1].y - m->pt_new[i][j].y) +
@@ -29,6 +30,7 @@ void		ft_draw_x(t_env *m, int i, int j)
 	}
 	while (++l < m->pt_new[i][j + 1].y)
 	{
+//		printf("new[%d][%d].y = %d\n", i, j, m->pt_new[i][j].y);
 		mlx_pixel_put(m->mlx_ptr, m->win_ptr, ((l - m->pt_new[i][j].y) / 
 					(m->pt_new[i][j + 1].y - m->pt_new[i][j].y) * 
 					(m->pt_new[i][j + 1].x - m->pt_new[i][j].x) + 
@@ -47,12 +49,20 @@ void		prepare_pt(t_env *m)
 		j = -1;
 		while (++j < m->x_max)
 		{
-			m->pt_new[i][j].x = ((m->pt_new[i][j].x_tmp - m->midx) * (m->zoom < 0 ? 0 : m->zoom)) + (WIN_X / 2);
-			m->pt_new[i][j].y = ((m->pt_new[i][j].y_tmp - m->midy) * (m->zoom < 0 ? 0 : m->zoom)) + (WIN_Y / 2);
+			m->pt_new[i][j].x = ((m->pt_new[i][j].x_tmp - m->midx) * 10 + (WIN_X / 2));
+			m->pt_new[i][j].y = ((m->pt_new[i][j].y_tmp - m->midy) * 10 + (WIN_Y / 2));
 			m->pt_new[i][j].z = m->pt_new[i][j].z_tmp;
-			printf("zoom[%d]\n", m->zoom);
+			/*if (m->pt[i][j].z != 0)
+			{
+				m->pt_new[i][j].x += (m->pt_new[i][j].z_tmp * m->z_gap);
+				m->pt_new[i][j].y -= (m->pt_new[i][j].z_tmp * m->z_gap);
+			}*/
+			//printf("z[%f]\n", m->pt_new[i][j].z_tmp);
+			//printf("new[%d][%d].x = %d", i, j, m->pt_new[i][j].x);
+			//printf("new[%d][%d].y = %d\n", i, j, m->pt_new[i][j].y);
 		}
 	}
+
 }
 
 void		get_zxy(t_env *m)
@@ -60,23 +70,26 @@ void		get_zxy(t_env *m)
 	int		i;
 	int		j;
 
-	m->z_gap = m->z_max - m->z_min;
-	m->z_min = 0;
 	i = -1;
 	while (++i < m->y_max)
 	{
 		j = -1;
 		while (++j < m->x_max)
 		{
-			m->pt_new[i][j].x += m->x_move;
-			m->pt_new[i][j].y += m->y_move; 
+			m->pt_new[i][j].x = m->pt_new[i][j].x + m->x_move;
+			m->pt_new[i][j].y = m->pt_new[i][j].y + m->y_move;
 			if (m->pt[i][j].z != 0)
 			{
-				m->pt_new[i][j].x += (m->z_gap);
-				m->pt_new[i][j].y -= (m->z_gap);
+				m->pt_new[i][j].x += (m->pt_new[i][j].z_tmp * m->z_gap);
+				m->pt_new[i][j].y -= (m->pt_new[i][j].z_tmp * m->z_gap);
 			}
+		//	printf("x[%d] y[%d] z[%d]\n", m->pt_new[i][j].x, m->pt_new[i][j].y, m->pt_new[i][j].z);
 		}
 	}
+	m->x_move = 0;
+	m->y_move = 0;
+	m->z_move = 0;
+	m->z_gap = 0;
 }
 
 void		ft_horizon(t_env *m)
