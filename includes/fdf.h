@@ -12,10 +12,10 @@ typedef struct		s_point
 {
 	float			x;
 	float			y;
-	int				z;
+	float			z;
 	float			x_tmp;
 	float			y_tmp;
-	int				z_tmp;
+	float			z_tmp;
 	int				color;
 }					t_point;
 
@@ -36,11 +36,15 @@ typedef struct		s_env
 	float			x_angle;
 	float			y_angle;
 	float			z_angle;
-	int				zoom;
-	int				z_gap;
+	float			zoom;
+	float			zoom_x;
+	float			zoom_y;
+	float			window;
+	float			z_gap;
 	int				x_move;
 	int				y_move;
 	int				color;
+	int				z_move;
 }					t_env;
 
 int			read_max(int fd, t_env *m);
@@ -65,12 +69,12 @@ void		ft_draw_y(t_env *m, int i, int j);
 void		rotation_x(t_env *m);
 void		rotation_y(t_env *m);
 void		rotation_z(t_env *m);
-void		ft_rotate(t_env *m);
+void		ft_rotate(t_env *m, int key);
 
 int			keyfunction(int key, t_env *m);
 void		key_zoom(int key, t_env *m);
 
-int			mousefunction(int key, int x, int y, t_env *m);
+//int			mousefunction(int key, int x, int y, t_env *m);
 
 void		key_color_1_x(t_env *m);
 void		key_color_1_y(t_env *m);
