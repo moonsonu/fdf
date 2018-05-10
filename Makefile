@@ -6,7 +6,7 @@
 #    By: ksonu <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/16 21:19:01 by ksonu             #+#    #+#              #
-#    Updated: 2018/04/28 21:20:43 by ksonu            ###   ########.fr        #
+#    Updated: 2018/05/10 14:17:06 by ksonu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ SRC = main.c			\
 	  draw_y.c			\
 	  keyfunction.c		\
 	  rotation.c		\
-	  color.c			\
+	  color_x.c			\
+	  color_y.c			\
 	  mousefunction.c	
 
 OBJ = $(SRC:.c=.o)
