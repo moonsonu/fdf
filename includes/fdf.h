@@ -48,35 +48,36 @@ typedef struct		s_env
 	int				z_move;
 }					t_env;
 
+void		read_dup(t_env *m);
+void		read_color(char **str, t_env *m, int i, int j);
 int			read_max(int fd, t_env *m);
 void		read_value(int fd, t_env *m);
-void		read_dup(t_env *m);
 
-void		mlx(t_env *m);
+void		init_struct(t_env *m);
 void		mlx_message(t_env *m);
-void		prepare_zscale(t_env *m, t_point pt);
-void		init_struct(t_env *m);
 void		midpoint(t_env *m);
+void		mlx(t_env *m);
 
-void		ft_horizon(t_env *m);
-void		get_zxy(t_env *m);
 void		ft_draw_x(t_env *m, int i, int j);
-void		init_struct(t_env *m);
 void		prepare_pt(t_env *m);
+void		get_zxy(t_env *m);
+void		ft_horizon(t_env *m);
 
-void		ft_vertic(t_env *m);
-void		get_zyx(t_env *m);
 void		ft_draw_y(t_env *m, int i, int j);
+void		get_zyx(t_env *m);
+void		ft_vertic(t_env *m);
 
 void		rotation_x(t_env *m);
 void		rotation_y(t_env *m);
 void		rotation_z(t_env *m);
 void		ft_rotate(t_env *m, int key);
 
-int			keyfunction(int key, t_env *m);
+void		key_function(int key, t_env *m);
+void		key_reset(t_env *m);
 void		key_zoom(int key, t_env *m);
+int			keyfunction(int key, t_env *m);
 
-//int			mousefunction(int key, int x, int y, t_env *m);
+int			mousefunction(int key, int x, int y, t_env *m);
 
 void		key_color_1_x(t_env *m);
 void		key_color_1_y(t_env *m);
@@ -84,4 +85,5 @@ void		key_color_2_x(t_env *m);
 void		key_color_2_y(t_env *m);
 void		key_color_3_x(t_env *m);
 void		key_color_3_y(t_env *m);
+void		key_color_4(t_env *m);
 #endif
