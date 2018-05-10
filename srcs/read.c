@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:52:57 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/08 22:55:25 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/09 17:24:23 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int			read_max(int fd, t_env *m)
 	tmp = 0;
 	m->y_max = 0;
 	m->x_max = 0;
-	m->window = WIN_X;
+	m->window = m->win_x;
 	while (get_next_line(fd, &line) > 0)
 	{
 		m->y_max++;
@@ -86,9 +86,9 @@ int			read_max(int fd, t_env *m)
 		ft_strdel(&line);
 	}
 	if (m->x_max >= m->y_max)
-		m->gap = (WIN_X / 3) / m->x_max;
+		m->gap = (m->win_x / 2) / m->x_max + 1;
 	else if (m->x_max < m->y_max)
-		m->gap = (WIN_Y / 3) / m->y_max;
+		m->gap = (m->win_y / 2) / m->y_max + 1;
 	return (0);
 }
 

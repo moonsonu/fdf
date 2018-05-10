@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 16:43:08 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/08 23:05:03 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/09 17:11:36 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void		key_function(int key, t_env *m)
 	ft_rotate(m, key);
 	//prepare_pt(m);
 	get_zxy(m);
+	//midpoint(m);
 //	printf("xangle[%f] yangle[%f] zangle[%f]\n", m->x_angle, m->y_angle, m->z_angle);
 }
 
@@ -46,6 +47,7 @@ void		key_reset(/*int key, */t_env *m)
 	init_struct(m);
 	key_color_1_x(m);
 	prepare_pt(m);
+	midpoint(m);
 	get_zxy(m);
 	//ft_rotate(m);
 	//prepare_pt(m);

@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 22:06:09 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/08 23:07:15 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/09 16:45:37 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void		prepare_pt(t_env *m)
 		j = -1;
 		while (++j < m->x_max)
 		{
-			m->pt_new[i][j].x = ((m->pt_new[i][j].x_tmp - m->midx) * 10 + (WIN_X / 2));
-			m->pt_new[i][j].y = ((m->pt_new[i][j].y_tmp - m->midy) * 10 + (WIN_Y / 2));
+			m->pt_new[i][j].x = ((m->pt_new[i][j].x_tmp) * m->gap);
+			m->pt_new[i][j].y = ((m->pt_new[i][j].y_tmp) * m->gap);
 			m->pt_new[i][j].z = m->pt_new[i][j].z_tmp;
 			/*if (m->pt[i][j].z != 0)
 			{
@@ -83,7 +83,6 @@ void		get_zxy(t_env *m)
 				m->pt_new[i][j].x += (m->pt_new[i][j].z_tmp * m->z_gap);
 				m->pt_new[i][j].y -= (m->pt_new[i][j].z_tmp * m->z_gap);
 			}
-		//	printf("x[%d] y[%d] z[%d]\n", m->pt_new[i][j].x, m->pt_new[i][j].y, m->pt_new[i][j].z);
 		}
 	}
 	m->x_move = 0;
