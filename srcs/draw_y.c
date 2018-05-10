@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 21:52:44 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/08 22:25:14 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/09 17:29:58 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void		get_zyx(t_env *m)
 			m->peter[i][j].y = m->pt_new[j][i].y;
 			m->peter[i][j].z = m->pt_new[j][i].z;
 			m->peter[i][j].z_tmp = m->pt_new[j][i].z_tmp;
-			//m->peter[i][j].color = m->pt_new[j][i].color;
 		}
 	}
 }
@@ -61,7 +60,6 @@ void		ft_vertic(t_env *m)
 	int		i;
 	int		j;
 
-//	get_zyx(m);
 	i = -1;
 	while (++i < m->x_max)
 	{

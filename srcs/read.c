@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:52:57 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/09 17:24:23 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/10 14:17:16 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void		read_dup(t_env *m)
 	int		i;
 	int		j;
 
-//	m->zoom = 10;
 	i = -1;
 	m->pt_new = (t_point**)malloc(sizeof(t_point*) * (m->y_max + 1));
 	while (++i < m->y_max)
@@ -29,7 +28,6 @@ void		read_dup(t_env *m)
 		{
 			m->pt_new[i][j].x_tmp = m->pt[i][j].x;
 			m->pt_new[i][j].y_tmp = m->pt[i][j].y;
-			//prepare_zscale(m, m->pt[i][j]);
 			m->pt_new[i][j].z_tmp = m->pt[i][j].z;
 			m->pt_new[i][j].color = m->pt[i][j].color;
 		}
@@ -100,8 +98,6 @@ void		read_value(int fd, t_env *m)
 	int		j;
 
 	i = -1;
-	m->midx = m->x_max / 2;
-	m->midy = m->y_max / 2;
 	malloc_p(m);
 	while (++i < m->y_max + 1)
 	{

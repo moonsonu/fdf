@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 23:58:20 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/09 16:34:44 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/10 13:56:38 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,11 @@ void		rotation_z(t_env *m)
 
 void		ft_rotate(t_env *m, int key)
 {
-	//m->zoom_x = (m->window / 20);
-	//key == 7 ? rotation_x(m, m->zoom_x) : 0;
-	//key == 9 ? rotation_x(m, -(m->zoom_x)) : 0;
-	//key == 8 ? rotation_y(m, m->zoom_y) : 0;
-	//key == 2 ? rotation_y(m, -(m->zoom_y)) : 0;
-	//key == 6 ? rotation_z(m, m->zoom_z) : 0;
-	//key == 0 ? rotation_z(m, -(m->zoom_z)) : 0;
 	key == 7 || key == 9 ? rotation_x(m) : 0;
 	key == 8 || key == 2 ? rotation_y(m) : 0;
 	key == 6 || key == 0 ? rotation_z(m) : 0;
+	key == 4 || key == 5 ? rotation_x(m) : 0;
+	key == 6 || key == 7 ? rotation_y(m) : 0;
 	m->x_angle = 0;
 	m->y_angle = 0;
 	m->z_angle = 0;
