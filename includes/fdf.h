@@ -1,7 +1,5 @@
 #ifndef FDF_H
 # define FDF_H
-# define WIN_X 1280
-# define WIN_Y 760
 # include "../libs/libft/includes/libft.h"
 # include "../libs/mlx/mlx.h"
 # include <math.h>
@@ -26,11 +24,14 @@ typedef struct		s_env
 	t_point			**peter;
 	void			*mlx_ptr;
 	void			*win_ptr;
+	char			*file_name;
+	int				win_x;
+	int				win_y;
 	int				x_max;
 	int				y_max;
 	int				z_max;
 	int				z_min;
-	int				gap;
+	float			gap;
 	int				midx;
 	int				midy;
 	float			x_angle;
@@ -55,6 +56,7 @@ void		mlx(t_env *m);
 void		mlx_message(t_env *m);
 void		prepare_zscale(t_env *m, t_point pt);
 void		init_struct(t_env *m);
+void		midpoint(t_env *m);
 
 void		ft_horizon(t_env *m);
 void		get_zxy(t_env *m);
