@@ -6,7 +6,7 @@
 #    By: ksonu <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/16 21:19:01 by ksonu             #+#    #+#              #
-#    Updated: 2018/05/10 14:17:06 by ksonu            ###   ########.fr        #
+#    Updated: 2018/05/10 18:11:57 by ksonu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRC = main.c			\
 	  mousefunction.c	
 
 OBJ = $(SRC:.c=.o)
-MLX = -L $(MLXDIR) -fsanitize=address -lmlx -framework OpenGL -framework Appkit
+MLX = -L $(MLXDIR) -lmlx -framework OpenGL -framework Appkit
 
 SRCDIR = srcs
 OBJDIR = objs
