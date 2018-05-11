@@ -48,6 +48,10 @@ typedef struct		s_env
 	int				z_move;
 }					t_env;
 
+void		error_usage(void);
+void		window_prepare(int ac, char **av, t_env *m);
+//int			validation(char *line);
+
 void		read_dup(t_env *m);
 void		read_color(char **str, t_env *m, int i, int j);
 int			read_max(int fd, t_env *m);
