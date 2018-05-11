@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:38:40 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/10 14:15:10 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/10 21:10:17 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,22 @@ void	window_prepare(int ac, char **av, t_env *m)
 		}
 		i++;
 	}
+	m->win_x == 0 ? m->win_x = 1280 : 0;
+	m->win_y == 0 ? m->win_y = 760 : 0;
 }
+
+/*int		validation(char *line)
+{
+	int		i;
+
+	i = -1;
+	while (line[++i] != '\0')
+	{
+			printf("line[%d] = %c\n", i, line[i]);
+		if (line[i] == '-' || line[i] == ',' || (line[i] >= '0' && line[i] <= '9') || (line[i] >= 'A' && line[i] <= 'F') || (line[i] >= 'a' && line[i] <= 'f') || line[i] == 'x' || line[i] == 'X')
+	}
+	return (1);
+}*/
 
 int		main(int ac, char **av)
 {
@@ -59,10 +74,10 @@ int		main(int ac, char **av)
 	window_prepare(ac, av, &m);
 	fd = open(av[1], O_RDONLY);
 	read_max(fd, &m);
-	close(fd);
+	//close(fd);
 	fd = open(av[1], O_RDONLY);
 	read_value(fd, &m);
-	close(fd);
+	//close(fd);
 	m.mlx_ptr = mlx_init();
 	m.win_ptr = mlx_new_window(m.mlx_ptr, m.win_x, m.win_y, m.file_name);
 	init_struct(&m);

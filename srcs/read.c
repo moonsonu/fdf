@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:52:57 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/10 14:17:16 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/10 21:09:08 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void		read_color(char **str, t_env *m, int i, int j)
 	{
 		tmp = ft_strdup(ptr + 3);
 		m->pt[i][j].color = ft_atoi_base(tmp, 16);
+		free(tmp);
 	}
 	else
 		m->pt[i][j].color = 0;
@@ -73,20 +74,19 @@ int			read_max(int fd, t_env *m)
 	m->window = m->win_x;
 	while (get_next_line(fd, &line) > 0)
 	{
+		/*if (validation(line) == 1)
+			ft_putendl("Invalid map\n");*/
 		m->y_max++;
 		tmp = ft_wdcount(line, ' ') + 1;
-		if (m->x_max != 0 && tmp != m->x_max)
-		{
-			ft_putstr("error");
-			return (1);
-		}
-		m->x_max = tmp;
+		if (m->x_max < tmp)
+			m->x_max = tmp;
 		ft_strdel(&line);
 	}
 	if (m->x_max >= m->y_max)
 		m->gap = (m->win_x / 2) / m->x_max + 1;
 	else if (m->x_max < m->y_max)
 		m->gap = (m->win_y / 2) / m->y_max + 1;
+	close(fd);
 	return (0);
 }
 
@@ -116,5 +116,6 @@ void		read_value(int fd, t_env *m)
 			ft_strdel(&line);
 		}
 	}
+	close(fd);
 	read_dup(m);
 }
