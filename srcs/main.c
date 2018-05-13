@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:38:40 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/12 17:47:13 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/12 18:44:32 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	window_prepare(int ac, char **av, t_env *m)
 
 	if (ac < 2 || ac > 6)
 		error_usage();
-	m->file_name = ft_strjoin(av[1], " by KSONU");
 	i = 1;
 	m->win_x = 0;
 	m->win_y = 0;
@@ -88,13 +87,14 @@ int		main(int ac, char **av)
 	int		fd;
 
 	ft_bzero(&m, sizeof(t_env));
+	m.file_name = ft_strjoin(av[1], " by KSONU");
 	window_prepare(ac, av, &m);
 	fd = open(av[1], O_RDONLY);
 	read_max(fd, &m);
-	//close(fd);
+	close(fd);
 	fd = open(av[1], O_RDONLY);
 	read_value(fd, &m);
-	//close(fd);
+	close(fd);
 	m.mlx_ptr = mlx_init();
 	m.win_ptr = mlx_new_window(m.mlx_ptr, m.win_x, m.win_y, m.file_name);
 	init_struct(&m);
