@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:52:57 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/10 21:09:08 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/12 17:46:49 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,7 @@ int			read_max(int fd, t_env *m)
 	m->window = m->win_x;
 	while (get_next_line(fd, &line) > 0)
 	{
-		/*if (validation(line) == 1)
-			ft_putendl("Invalid map\n");*/
+		validation(line);
 		m->y_max++;
 		tmp = ft_wdcount(line, ' ') + 1;
 		if (m->x_max < tmp)

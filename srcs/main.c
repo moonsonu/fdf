@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:38:40 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/10 21:10:17 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/12 17:47:13 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,19 @@ void	error_usage(void)
 	exit(0);
 }
 
+void	error_invalidmap(void)
+{
+	ft_putendl("Invalid input file\n");
+	exit(0);
+}
+
 void	window_prepare(int ac, char **av, t_env *m)
 {
 	int		i;
 
 	if (ac < 2 || ac > 6)
 		error_usage();
-	m->file_name = ft_strjoin(ft_strdup(av[1]), " by KSONU");
+	m->file_name = ft_strjoin(av[1], " by KSONU");
 	i = 1;
 	m->win_x = 0;
 	m->win_y = 0;
@@ -52,18 +58,29 @@ void	window_prepare(int ac, char **av, t_env *m)
 	m->win_y == 0 ? m->win_y = 760 : 0;
 }
 
-/*int		validation(char *line)
+void		validation(char *line)
 {
 	int		i;
 
 	i = -1;
 	while (line[++i] != '\0')
 	{
-			printf("line[%d] = %c\n", i, line[i]);
-		if (line[i] == '-' || line[i] == ',' || (line[i] >= '0' && line[i] <= '9') || (line[i] >= 'A' && line[i] <= 'F') || (line[i] >= 'a' && line[i] <= 'f') || line[i] == 'x' || line[i] == 'X')
+		if (line[i] == '\n' && line[i + 1] == '\n')
+			error_invalidmap();
+		else if (line[i] < ' ' && line[i] != '\n')
+			error_invalidmap();
+		else if (line[i] > ' ' && line[i] < ',')
+			error_invalidmap();
+		else if (line[i] > '-' && line[i] < '0')
+			error_invalidmap();
+		else if (line[i] > '9' && line[i] < 'A')
+			error_invalidmap();
+		else if (line[i] > 'F' && line[i] < 'a')
+			error_invalidmap();
+		else if (line[i] > 'f' && line[i] != 'x')
+			error_invalidmap();
 	}
-	return (1);
-}*/
+}
 
 int		main(int ac, char **av)
 {
