@@ -49,6 +49,7 @@ typedef struct		s_env
 }					t_env;
 
 void		error_usage(void);
+void		error_invalidmap(void);
 void		window_prepare(int ac, char **av, t_env *m);
 void		validation(char *line);
 
