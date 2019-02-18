@@ -6,6 +6,8 @@ how to join them with segments and most importantly how to observe the scene fro
 
 Language: C
 
+![](fdf.gif)
+
 ## Installation
 ```
 > make
