@@ -6,3 +6,13 @@ how to join them with segments and most importantly how to observe the scene fro
 
 Language: C
 
+## Installation
+```
+> make
+> ./fdf [FILE.fdf] -w [width] -h [height]
+```
+```
+-w : specified the width
+-h : specified the height
+Both width and height has to be greater than 500
+```
